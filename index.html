@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Vue CRUD</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</head>
+<body>
+    <div class="container-fluid p-5">
+        <div class="row" id="app">
+            <div class="col col-3 jumbotron m-2" style="height: 700px;">
+              <h4 class="text-center mb-4">Create a student</h4>
+                <form id="form" @submit.prevent="submit">
+                    <div class="form-group row text-right">
+                      <label for="name" class="col-sm-3 col-form-label">Name</label>
+                      <div class="col-sm-9">
+                        <input v-model="newStudent.name" type="text" class="form-control" id="name">
+                      </div>
+                    </div>
+                    <div class="form-group row text-right">
+                      <label for="age" class="col-sm-3 col-form-label">Age</label>
+                      <div class="col-sm-9">
+                        <input v-model="newStudent.age" type="number" class="form-control" id="age">
+                      </div>
+                    </div>
+                    <div class="form-group row text-right">
+                      <label for="group" class="col-sm-3 col-form-label">Group</label>
+                      <div class="col-sm-9">
+                        <input v-model="newStudent.group" type="text" class="form-control" id="group">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col col-3"></div>
+                      <div class="col col-9">
+                        <button type="submit" class="form-control btn btn-outline-primary">Submit</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col col-8 jumbotron m-2" style="height: 700px;">
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Group</th>
+                    <th class="text-center" width="15%">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="student in students" :key="student.id">
+                    <th scope="row">{{ student.id }}</th>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age}}</td>
+                    <td>{{ student.group}}</td>
+                    <td class="text-center">
+                          <button @click="removeStudent()" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>                 
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
