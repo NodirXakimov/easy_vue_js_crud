@@ -20,21 +20,62 @@ var app = new Vue({
             name: '',
             age: null,
             group: null
-        }
+        },
+        isEdit: false
     },
     methods: {
-        submit(){
-            
+        createStudent(){
             this.students.push({
                 id: this.students.length,
                 name: this.newStudent.name,
                 age: this.newStudent.age,
                 group: this.newStudent.group
             });
-            this.newStudent.id = null;
-            this.newStudent.name = null;
-            this.newStudent.age = null;
-            this.newStudent.group = null;
+           this.setToInput();
+        },
+        removeStudent(id){
+            this.students.forEach((student, index) => {
+                if(student.id == id){
+                    this.students.splice(index, 1);
+                }
+            });
+        },
+        editStudent(id){
+            this.isEdit = true;
+            this.setToInput(id);
+        },
+        setToInput(id = null){
+            if(id === null){
+                this.newStudent.id = null;
+                this.newStudent.name = null;
+                this.newStudent.age = null;
+                this.newStudent.group = null;
+            } else {
+                this.students.forEach((student, index) => {
+                    if(student.id === id){
+                        this.newStudent.id = student.id;
+                        this.newStudent.name = student.name;
+                        this.newStudent.age = student.age;
+                        this.newStudent.group = student.group;
+                    }
+                })
+            }
+        },
+        saveStudent(){
+            this.students.forEach(student =>{
+                if(student.id === this.newStudent.id){
+                    student.name = this.newStudent.name;
+                    student.age = this.newStudent.age;
+                    student.group = this.newStudent.group;
+                }
+            });
+            this.setToInput();
+            this.isEdit = false;
         }
+
+
+
+
+
     },
 })

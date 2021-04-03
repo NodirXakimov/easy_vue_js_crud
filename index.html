@@ -12,36 +12,36 @@
 <body>
     <div class="container-fluid p-5">
         <div class="row" id="app">
-            <div class="col col-3 jumbotron m-2" style="height: 700px;">
-              <h4 class="text-center mb-4">Create a student</h4>
-                <form id="form" @submit.prevent="submit">
-                    <div class="form-group row text-right">
-                      <label for="name" class="col-sm-3 col-form-label">Name</label>
-                      <div class="col-sm-9">
-                        <input v-model="newStudent.name" type="text" class="form-control" id="name">
-                      </div>
+            <div class="col col-12 col-md-12 col-lg-3 jumbotron m-2" style="height: 700px;">
+              <h4 v-if="isEdit" class="text-center mb-4">Edit a student</h4>
+              <h4 v-else class="text-center mb-4">Create student</h4>
+                  <div class="form-group row text-right">
+                    <label for="name" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                      <input v-model="newStudent.name" type="text" class="form-control" id="name">
                     </div>
-                    <div class="form-group row text-right">
-                      <label for="age" class="col-sm-3 col-form-label">Age</label>
-                      <div class="col-sm-9">
-                        <input v-model="newStudent.age" type="number" class="form-control" id="age">
-                      </div>
+                  </div>
+                  <div class="form-group row text-right">
+                    <label for="age" class="col-sm-3 col-form-label">Age</label>
+                    <div class="col-sm-9">
+                      <input v-model="newStudent.age" type="number" class="form-control" id="age">
                     </div>
-                    <div class="form-group row text-right">
-                      <label for="group" class="col-sm-3 col-form-label">Group</label>
-                      <div class="col-sm-9">
-                        <input v-model="newStudent.group" type="text" class="form-control" id="group">
-                      </div>
+                  </div>
+                  <div class="form-group row text-right">
+                    <label for="group" class="col-sm-3 col-form-label">Group</label>
+                    <div class="col-sm-9">
+                      <input v-model="newStudent.group" type="text" class="form-control" id="group">
                     </div>
-                    <div class="form-group row">
-                      <div class="col col-3"></div>
-                      <div class="col col-9">
-                        <button type="submit" class="form-control btn btn-outline-primary">Submit</button>
-                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col col-3"></div>
+                    <div class="col col-9">
+                      <button v-if="isEdit" @click="saveStudent" class="form-control btn btn-outline-primary">Save</button>
+                      <button v-else @click="createStudent" class="form-control btn btn-outline-primary">Create</button>
                     </div>
-                </form>
+                  </div>
             </div>
-            <div class="col col-8 jumbotron m-2" style="height: 700px;">
+            <div class="col col-12 col-md-12 col-lg-8 jumbotron m-2" style="height: 700px;">
               <table class="table table-hover table-bordered">
                 <thead>
                   <tr>
@@ -53,14 +53,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="student in students" :key="student.id">
-                    <th scope="row">{{ student.id }}</th>
+                  <tr v-for="(student, index) in students" :key="student.id">
+                    <th scope="row">{{ index + 1 }}</th>
                     <td>{{ student.name }}</td>
                     <td>{{ student.age}}</td>
                     <td>{{ student.group}}</td>
                     <td class="text-center">
-                          <button @click="removeStudent()" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                          <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>                 
+                          <button @click="editStudent(student.id)" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button @click="removeStudent(student.id)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>                 
                     </td>
                   </tr>
                 </tbody>
