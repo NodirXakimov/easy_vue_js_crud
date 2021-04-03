@@ -21,17 +21,23 @@ var app = new Vue({
             age: null,
             group: null
         },
-        isEdit: false
+        isEdit: false,
+        error: false
     },
     methods: {
         createStudent(){
+            if(!this.validateInput()){
+                this.error = true;
+                setTimeout(() => this.error = false, 1200);
+                return;
+            }
             this.students.push({
                 id: this.students.length,
                 name: this.newStudent.name,
                 age: this.newStudent.age,
                 group: this.newStudent.group
             });
-           this.setToInput();
+            this.setToInput();
         },
         removeStudent(id){
             this.students.forEach((student, index) => {
@@ -62,6 +68,11 @@ var app = new Vue({
             }
         },
         saveStudent(){
+            if(!this.validateInput()){
+                this.error = true;
+                setTimeout(() => this.error = false, 1200);
+                return;
+            }
             this.students.forEach(student =>{
                 if(student.id === this.newStudent.id){
                     student.name = this.newStudent.name;
@@ -71,10 +82,17 @@ var app = new Vue({
             });
             this.setToInput();
             this.isEdit = false;
+        },
+        validateInput(){
+            for (const key in this.newStudent) {
+                if(key === 'id') 
+                    continue;
+                if (!this.newStudent[key]) {
+                    return false;
+                }
+            }
+            return true;
         }
-
-
-
 
 
     },
