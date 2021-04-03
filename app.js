@@ -12,11 +12,17 @@ var app = new Vue({
                 id: 1,
                 name: 'Javohir',
                 age: 24,
-                group: '120'
+                group: 'KK-2005'
             },
             {
                 id: 2,
                 name: 'Abdulaziz',
+                age: 24,
+                group: '310'
+            },
+            {
+                id: 3,
+                name: 'Dilshod',
                 age: 24,
                 group: '310'
             },

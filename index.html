@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid p-5">
         <div class="row" id="app">
-            <div class="col col-12 col-md-12 col-lg-3 jumbotron m-2" style="height: 700px;">
+            <div class="col col-12 col-md-12 col-lg-3 jumbotron m-2">
               <h4 v-if="isEdit" class="text-center mb-4">Edit a student</h4>
               <h4 v-else class="text-center mb-4">Create student</h4>
                   <div class="row justify-content-end">
@@ -23,40 +23,40 @@
                     </div>
                   </div>
                   <div class="form-group row text-right">
-                    <label for="name" class="col-sm-3 col-form-label">Name</label>
-                    <div class="col-sm-9">
+                    <label for="name" class="col-3 col-xs-3 col-form-label">Name</label>
+                    <div class="col-9 col-xs-8">
                       <input v-model="newStudent.name" type="text" class="form-control" id="name">
                     </div>
                   </div>
                   <div class="form-group row text-right">
-                    <label for="age" class="col-sm-3 col-form-label">Age</label>
-                    <div class="col-sm-9">
+                    <label for="age" class="col-3 col-xs-3 col-form-label">Age</label>
+                    <div class="col-9 col-xs-8">
                       <input v-model="newStudent.age" type="number" class="form-control" id="age">
                     </div>
                   </div>
                   <div class="form-group row text-right">
-                    <label for="group" class="col-sm-3 col-form-label">Group</label>
-                    <div class="col-sm-9">
+                    <label for="group" class="col-3 col-xs-3 col-form-label">Group</label>
+                    <div class="col-9 col-xs-8">
                       <input v-model="newStudent.group" type="text" class="form-control" id="group">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="col col-3"></div>
-                    <div class="col col-9">
+                    <div class="col col-3 col"></div>
+                    <div class="col col-9 col-sm-9">
                       <button v-if="isEdit" @click="saveStudent" class="form-control btn btn-outline-primary">Save</button>
                       <button v-else @click="createStudent" class="form-control btn btn-outline-primary">Create</button>
                     </div>
                   </div>
             </div>
-            <div class="col col-12 col-md-12 col-lg-8 jumbotron m-2" style="height: 700px;">
-              <table class="table table-hover table-bordered">
+            <div class="col col-12 col-md-12 col-lg-8 jumbotron m-2" style="overflow-x:auto;">
+              <table class="table table-hover table-bordered" style="min-width: 400px;">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Group</th>
-                    <th class="text-center" width="15%">Actions</th>
+                    <th class="text-center" width="30%">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
