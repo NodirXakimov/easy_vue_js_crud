@@ -10,10 +10,17 @@ var app = new Vue({
             },
             {
                 id: 1,
-                name: 'Sanjar',
+                name: 'Javohir',
                 age: 24,
-                group: 'MIIT-10'
-            }
+                group: '120'
+            },
+            {
+                id: 2,
+                name: 'Abdulaziz',
+                age: 24,
+                group: '310'
+            },
+
         ],
         newStudent: {
             id: null,
